@@ -19,7 +19,7 @@ export default defineConfig({
       formats: ['es', 'umd'],
     },
     rollupOptions: {
-      external: ['@editorjs/editorjs', '@editorjs/dom', '@codexteam/icons'],
+      external: ['@editorjs/editorjs', '@codexteam/icons'],
     },
   },
 });

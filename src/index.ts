@@ -1,6 +1,5 @@
 import './index.css';
 
-import { make } from '@editorjs/dom';
 import type { API, BlockTool, SanitizerConfig, ToolConfig } from '@editorjs/editorjs';
 
 interface SpeechRecognitionLike {
@@ -29,6 +28,27 @@ export interface VoiceInputConfig extends ToolConfig {
 }
 
 const ICON_MIC = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15a4 4 0 0 0 4-4V7a4 4 0 1 0-8 0v4a4 4 0 0 0 4 4Zm7-4a1 1 0 1 0-2 0 5 5 0 0 1-10 0 1 1 0 1 0-2 0 7 7 0 0 0 6 6.93V21H8a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2h-3v-3.07A7 7 0 0 0 19 11Z" fill="currentColor"/></svg>`;
+
+function make<K extends keyof HTMLElementTagNameMap>(
+  tag: K,
+  classNames: string[] = [],
+  attrs: Record<string, string | boolean> = {},
+): HTMLElementTagNameMap[K] {
+  const el = document.createElement(tag);
+  if (classNames.length) el.className = classNames.join(' ');
+  Object.entries(attrs).forEach(([key, value]) => {
+    if (key === 'contentEditable') {
+      el.contentEditable = String(value);
+      return;
+    }
+    if (key === 'type') {
+      el.setAttribute('type', String(value));
+      return;
+    }
+    el.setAttribute(key, String(value));
+  });
+  return el;
+}
 
 export default class VoiceInputTool implements BlockTool {
   private api: API;
