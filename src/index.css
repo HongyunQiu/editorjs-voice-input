@@ -1,0 +1,46 @@
+.cdx-voice-input {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px;
+  background: #fff;
+}
+
+.cdx-voice-input__toolbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.cdx-voice-input__btn {
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #0f172a;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.cdx-voice-input__btn.is-recording {
+  color: #fff;
+  border-color: #ef4444;
+  background: #ef4444;
+}
+
+.cdx-voice-input__hint {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.cdx-voice-input__text {
+  min-height: 66px;
+  line-height: 1.6;
+  outline: none;
+  color: #0f172a;
+}
+
+.cdx-voice-input__text:empty::before {
+  content: attr(data-placeholder);
+  color: #94a3b8;
+}
